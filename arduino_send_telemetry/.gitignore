@@ -1,5 +1,6 @@
-QSPI2.uv*
-QSPI.uv*
+*.uvg*
+*.uvo*
+*.uvp*
 .mbed
 *.bak
 GettingStarted.html
