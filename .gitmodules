@@ -1,0 +1,9 @@
+[submodule "https_send_telemetry/libThingsBoard"]
+	path = https_send_telemetry/libThingsBoard
+	url = git@github.com:ATM-HSW/libThingsBoard.git
+[submodule "https_send_telemetry/libMbedArduinoJson"]
+	path = https_send_telemetry/libMbedArduinoJson
+	url = git@github.com:ATM-HSW/libMbedArduinoJson.git
+[submodule "https_send_telemetry/libHttp"]
+	path = https_send_telemetry/libHttp
+	url = git@github.com:ATM-HSW/libHttp.git
