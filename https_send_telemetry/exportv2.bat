@@ -2,12 +2,14 @@ echo off
 rem +++++++++ config ++++++++++
 rem +++++++++++++++++++++++++++
 
-set mbedos=mbed-os-6.9.0
+set mbedos=mbed-os-6.12.0
 
 rem set platform=NUCLEO_F446RE
-set platform=NUCLEO_F767ZI
+rem set platform=NUCLEO_F767ZI
 rem set platform=NUCLEO_F767ZI_QSPI
 rem set platform=AUTO
+set platform=NUCLEO_H745ZI
+rem set platform=DISCO_H747I
 
 set ide=uvision6
 rem set ide=eclipse_gcc_arm

@@ -1,2 +1,11 @@
-arduino_send_telemetry/secrets.h
-arduino_send_batch/secrets.h
+*/secrets.h
+*/*.uvg*
+*/*.uvo*
+*/*.uvp*
+*/.mbed
+*/*.bak
+*/GettingStarted.html
+*/mbed_config.h
+*/BUILD/
+*/DebugConfig/
+*/EventRecorderStub.scvd
