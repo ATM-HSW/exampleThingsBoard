@@ -7,3 +7,21 @@
 [submodule "https_send_telemetry/libHttp"]
 	path = https_send_telemetry/libHttp
 	url = git@github.com:ATM-HSW/libHttp.git
+[submodule "http_send_telemetry/libHttp"]
+	path = http_send_telemetry/libHttp
+	url = git@github.com:ATM-HSW/libHttp.git
+[submodule "http_send_telemetry/libThingsBoard"]
+	path = http_send_telemetry/libThingsBoard
+	url = git@github.com:ATM-HSW/libThingsBoard.git
+[submodule "http_send_telemetry/libMbedArduinoJson"]
+	path = http_send_telemetry/libMbedArduinoJson
+	url = git@github.com:ATM-HSW/libMbedArduinoJson.git
+[submodule "http_send_batch/libThingsBoard"]
+	path = http_send_batch/libThingsBoard
+	url = git@github.com:ATM-HSW/libThingsBoard.git
+[submodule "http_send_batch/libHttp"]
+	path = http_send_batch/libHttp
+	url = git@github.com:ATM-HSW/libHttp.git
+[submodule "http_send_batch/libMbedArduinoJson"]
+	path = http_send_batch/libMbedArduinoJson
+	url = git@github.com:ATM-HSW/libMbedArduinoJson.git
