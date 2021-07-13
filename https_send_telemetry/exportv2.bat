@@ -4,12 +4,8 @@ rem +++++++++++++++++++++++++++
 
 set mbedos=mbed-os-6.12.0
 
-rem set platform=NUCLEO_F446RE
-rem set platform=NUCLEO_F767ZI
-rem set platform=NUCLEO_F767ZI_QSPI
+set platform=NUCLEO_F767ZI
 rem set platform=AUTO
-set platform=NUCLEO_H745ZI
-rem set platform=DISCO_H747I
 
 set ide=uvision6
 rem set ide=eclipse_gcc_arm
