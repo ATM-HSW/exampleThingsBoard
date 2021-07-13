@@ -25,3 +25,15 @@
 [submodule "http_send_batch/libMbedArduinoJson"]
 	path = http_send_batch/libMbedArduinoJson
 	url = git@github.com:ATM-HSW/libMbedArduinoJson.git
+[submodule "https_send_HTU21_batch/libThingsBoard"]
+	path = https_send_HTU21_batch/libThingsBoard
+	url = git@github.com:ATM-HSW/libThingsBoard.git
+[submodule "https_send_HTU21_batch/libMbedArduinoJson"]
+	path = https_send_HTU21_batch/libMbedArduinoJson
+	url = git@github.com:ATM-HSW/libMbedArduinoJson.git
+[submodule "https_send_HTU21_batch/libHttp"]
+	path = https_send_HTU21_batch/libHttp
+	url = git@github.com:ATM-HSW/libHttp.git
+[submodule "https_send_HTU21_batch/libHTU21D"]
+	path = https_send_HTU21_batch/libHTU21D
+	url = git@github.com:ATM-HSW/libHTU21D.git
