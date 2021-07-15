@@ -5,7 +5,8 @@
   "target_overrides": {
     "*": {
     	"platform.all-stats-enabled": true,
-      "platform.crash-capture-enabled": false,
+      "platform.crash-capture-enabled": true,
+      "platfrom.error-reboot-max": 5,
       "platform.stdio-convert-newlines": true,
       "platform.stdio-baud-rate": 115200,
       "target.printf_lib": "std"

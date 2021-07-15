@@ -6,6 +6,8 @@
 //  - ESP8266 connected to Arduino Uno
 
 #include "mbed.h"
+#include "mbed_error.h"
+#include "mbed_fault_handler.h"
 #include "network-helper.h"
 #include "ThingsBoard.h"
 #include "SparkFunHTU21D.h"
@@ -70,16 +72,62 @@ I2C i2c(I2C_SDA , I2C_SCL );
 //Create an instance of the object
 HTU21D myHTU21;
 
+#if MBED_CONF_PLATFORM_CRASH_CAPTURE_ENABLED
+mbed_error_status_t err_status;
+uint32_t error_address;
+int32_t error_reboot_count;
+mbed_fault_context_t mbed_fault_context;
+static bool reboot_error_happened = false;
+
+// Application callback function for reporting error context during boot up.
+void mbed_error_reboot_callback(mbed_error_ctx *error_context) {
+  reboot_error_happened = true;
+  err_status = error_context->error_status;
+  error_address = error_context->error_address;
+  error_reboot_count = error_context->error_reboot_count;
+    if(error_reboot_count>3)
+      mbed_reset_reboot_count();
+    mbed_reset_reboot_error_info();
+}
+#endif
+
+bool bBoot = true;
+
 int main() {
   SocketAddress adr;
   nsapi_error_t result;
   bool bret;
+  
+  Telemetry data1[2] = {
+    { "temperature",  0.0 },
+    { "humidity",     0.0 },
+  };
+  Telemetry data2[3] = {
+    { "boot",  0 },
+    { "errorstatus",  0 },
+    { "erroraddress", 0 }
+  };
+ 
 
   printf("\n");
 #ifdef MBED_MAJOR_VERSION
   int num = printf("Mbed OS version: %d.%d.%d", MBED_MAJOR_VERSION, MBED_MINOR_VERSION, MBED_PATCH_VERSION);
   puts("");
   PRINT_STR_REPEAT("-", num);
+#endif
+
+#if MBED_CONF_PLATFORM_CRASH_CAPTURE_ENABLED
+  printf("App crash restart is enabled\n");
+  if (reboot_error_happened) {
+    if (err_status < 0) {
+      printf("2nd run: Retrieve the fault context using mbed_get_reboot_fault_context\n");
+      printf("    Error status: 0x%X\n", (uint32_t)err_status);
+      printf("    Address     : 0x%X\n", (uint32_t)error_address);
+      printf("    Reboot count: 0x%X\n", (uint32_t)error_reboot_count);
+    }
+  }
+#else
+    printf("App crash restart is not enabled\n");
 #endif
 
   net = connect_to_default_network_interface();
@@ -132,12 +180,30 @@ int main() {
 
     printf("Sending data...\n");
 
-    // Uploads new telemetry to ThingsBoard using http
-    bret = tb.sendTelemetryFloat("temperature", myHTU21.readTemperature());
-    if(!bret) printf("error sending telemetry: temperature\n");
-    bret = tb.sendTelemetryFloat("humidity", myHTU21.readHumidity());
-    if(!bret) printf("error sending telemetry: humidity\n");
+    if(bBoot) {
+      if(reboot_error_happened) {
+        data2[0].setValue(1);
+        data2[1].setValue((uint32_t)err_status);
+        data2[2].setValue((uint32_t)error_address);
+        bret = tb.sendTelemetry(data2, 3);
+        if(!bret) printf("error sending telemetry\n");
+      } else {
+        data2[0].setValue(1);
+        data2[1].setValue(0);
+        data2[2].setValue(0);
+        bret = tb.sendTelemetry(data2, 3);
+        if(!bret) printf("error sending telemetry\n");
+      }
+      reboot_error_happened = false;
+      bBoot = false;
+    }
 
+    // Uploads new telemetry to ThingsBoard using http
+    data1[0].setValue(myHTU21.readTemperature());
+    data1[1].setValue(myHTU21.readHumidity());
+    bret = tb.sendTelemetry(data1, 2);
+    if(!bret) printf("error sending telemetry\n");
+    
     socket->~TLSSocket();
     
     thread_sleep_for(15000);
