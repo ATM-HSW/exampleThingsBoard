@@ -37,3 +37,24 @@
 [submodule "https_send_HTU21_batch/libHTU21D"]
 	path = https_send_HTU21_batch/libHTU21D
 	url = git@github.com:ATM-HSW/libHTU21D.git
+[submodule "https_room_sensor/libHTU21D"]
+	path = https_room_sensor/libHTU21D
+	url = git@github.com:ATM-HSW/libHTU21D.git
+[submodule "https_room_sensor/libHttp"]
+	path = https_room_sensor/libHttp
+	url = git@github.com:ATM-HSW/libHttp.git
+[submodule "https_room_sensor/libMbedArduinoJson"]
+	path = https_room_sensor/libMbedArduinoJson
+	url = git@github.com:ATM-HSW/libMbedArduinoJson.git
+[submodule "https_room_sensor/libThingsBoard"]
+	path = https_room_sensor/libThingsBoard
+	url = git@github.com:ATM-HSW/libThingsBoard.git
+[submodule "https_room_sensor/libSGP40"]
+	path = https_room_sensor/libSGP40
+	url = git@github.com:ATM-HSW/libSGP40.git
+[submodule "https_room_sensor/libTSL2591"]
+	path = https_room_sensor/libTSL2591
+	url = git@github.com:ATM-HSW/libTSL2591.git
+[submodule "https_room_sensor/libMHZ19"]
+	path = https_room_sensor/libMHZ19
+	url = git@github.com:ATM-HSW/libMHZ19.git
